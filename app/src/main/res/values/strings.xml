@@ -5,7 +5,7 @@
     <string name="hint_mobile">Enter your mobile number</string>
     <string name="hint_name">Enter your name</string>
     <string name="hint_city">Enter your city</string>
-    <string name="hint_confirm_password">Enter your name</string>
+    <string name="hint_confirm_password">Confirm your password</string>
     <string name="navigation">Navigation Drawer</string>
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>

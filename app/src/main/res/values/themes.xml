@@ -5,5 +5,4 @@
          <item name="colorPrimary">@color/purple</item>
     </style>
 
-    <style name="Theme.ApnaApp" parent="Base.Theme.ApnaApp" />
 </resources>
