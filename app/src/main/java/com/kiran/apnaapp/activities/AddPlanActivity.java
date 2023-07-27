@@ -1,7 +1,9 @@
 package com.kiran.apnaapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,18 +12,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.archit.calendardaterangepicker.customviews.CalendarListener;
 import com.kiran.apnaapp.CommonUtilities;
 import com.kiran.apnaapp.bottomsheet.BottomSheetDialogView;
+import com.kiran.apnaapp.database.DatabaseHelper;
 import com.kiran.apnaapp.databinding.ActivityAddPlanBinding;
 
 import java.util.Calendar;
 
 public class AddPlanActivity extends AppCompatActivity implements View.OnClickListener, CalendarListener, BottomSheetDialogView.ItemClickListener {
     private ActivityAddPlanBinding binding;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAddPlanBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        databaseHelper = new DatabaseHelper(this);
         initView();
     }
 
@@ -41,6 +46,11 @@ public class AddPlanActivity extends AppCompatActivity implements View.OnClickLi
                 String budget = binding.etBudget.getText().toString().trim();
                 String startDate = binding.etStartDate.getText().toString().trim();
                 String endDate = binding.etEndDate.getText().toString().trim();
+
+                databaseHelper.saveTripDetails(name,budget, startDate, endDate);
+                Toast.makeText(this, "Save successfully", Toast.LENGTH_SHORT).show();
+                onBackPressed();
+
             }
         } else if (view == binding.etStartDate) {
             showBottomSheetDialog();
