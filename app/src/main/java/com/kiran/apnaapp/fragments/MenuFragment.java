@@ -1,5 +1,6 @@
 package com.kiran.apnaapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,10 +16,13 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.kiran.apnaapp.R;
+import com.kiran.apnaapp.activities.AddPlanActivity;
 
-public class MenuFragment extends Fragment {
+public class MenuFragment extends Fragment implements View.OnClickListener{
+    private FloatingActionButton floatingActionButton;
 
     @Nullable
     @Override
@@ -33,9 +37,16 @@ public class MenuFragment extends Fragment {
     }
 
     private void initView(View view) {
-
+        floatingActionButton = view.findViewById(R.id.floatingActionButton);
+        floatingActionButton.setOnClickListener(this);
     }
 
 
-
+    @Override
+    public void onClick(View view) {
+        if (view== floatingActionButton){
+            Intent intent = new Intent(requireActivity(), AddPlanActivity.class);
+            startActivity(intent);
+        }
+    }
 }
