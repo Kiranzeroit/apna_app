@@ -1,20 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/bg_item">
+    android:background="@drawable/bg_item"
+    android:layout_margin="@dimen/_10sdp">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="match_parent"
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_14sdp"
+        android:textSize="@dimen/_16sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/purple"
         tools:text="asdffh"
+        android:inputType="textCapSentences"
         android:textStyle="bold"
+        android:layout_margin="@dimen/_10sdp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvStartDateT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        android:textColor="@color/black"
+        android:text="Start Date:-"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvStartDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintTop_toTopOf="@id/tvStartDateT"
+        app:layout_constraintStart_toEndOf="@id/tvStartDateT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tvStartDateT"
+        tools:text="asdffh"
+        android:layout_margin="@dimen/_10sdp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEndDateT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintTop_toBottomOf="@id/tvStartDateT"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        android:textColor="@color/black"
+        android:text="Start Date:-"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEndDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintTop_toTopOf="@id/tvEndDateT"
+        app:layout_constraintStart_toEndOf="@id/tvEndDateT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tvEndDateT"
+        tools:text="asdffh"
+        android:layout_margin="@dimen/_10sdp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvBudgetT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintTop_toBottomOf="@id/tvEndDateT"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        android:textColor="@color/black"
+        android:text="Total budget:-"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvBudget"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintTop_toTopOf="@id/tvBudgetT"
+        app:layout_constraintStart_toEndOf="@id/tvBudgetT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tvBudgetT"
+        tools:text="asdffh"
         android:layout_margin="@dimen/_10sdp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
