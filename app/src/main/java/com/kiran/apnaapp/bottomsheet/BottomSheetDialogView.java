@@ -16,11 +16,12 @@ import com.kiran.apnaapp.R;
 
 import java.util.Calendar;
 
-public class BottomSheetDialog extends BottomSheetDialogFragment implements CalendarListener {
+public class BottomSheetDialogView extends BottomSheetDialogFragment implements CalendarListener {
     private ItemClickListener mListener;
+    public static final String TAG = "ActionBottomDialog";
 
-    public static BottomSheetDialog newInstance() {
-        return new BottomSheetDialog();
+    public static BottomSheetDialogView newInstance() {
+        return new BottomSheetDialogView();
     }
 
     @Nullable
@@ -38,7 +39,6 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements Cale
     private void initView(View view) {
         DateRangeCalendarView calendar = view.findViewById(R.id.calendar);
         calendar.setCalendarListener(this);
-
     }
 
     @Override
@@ -53,15 +53,18 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements Cale
 
     @Override
     public void onDateRangeSelected(@NonNull Calendar calendar, @NonNull Calendar calendar1) {
-
+        mListener.onDateRangeSelected(calendar, calendar1);
+        dismiss();
     }
 
     @Override
     public void onFirstDateSelected(@NonNull Calendar calendar) {
-
+        mListener.onFirstDateSelected(calendar);
     }
 
     public interface ItemClickListener {
-        void onItemClick(String item);
+        void onFirstDateSelected(Calendar startDate);
+
+        void onDateRangeSelected(Calendar startDate, Calendar endDate);
     }
 }
