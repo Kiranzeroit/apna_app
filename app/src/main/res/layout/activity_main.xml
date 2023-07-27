@@ -20,13 +20,13 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
+        android:layout_height="@dimen/_45sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_main_bottom_nevigation"
+        app:menu="@menu/menu_main_bottom_navigation"
         app:itemIconTint="@color/bg_selected_item"
-        app:itemIconSize="@dimen/_30sdp"
+        app:itemIconSize="@dimen/_24sdp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

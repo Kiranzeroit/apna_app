@@ -48,15 +48,25 @@ public class StartFragment extends Fragment {
         pieEntries.add(new PieEntry(50,"2020"));
         pieEntries.add(new PieEntry(50,"2023"));
 
+        ArrayList<Integer> colors = new ArrayList<>();
+        colors.add(Color.parseColor("#304567"));
+        colors.add(Color.parseColor("#309967"));
+        colors.add(Color.parseColor("#476567"));
+        colors.add(Color.parseColor("#890567"));
+        colors.add(Color.parseColor("#a35567"));
+        colors.add(Color.parseColor("#ff5f67"));
+        colors.add(Color.parseColor("#3ca567"));
+
         PieDataSet pieDataSet= new PieDataSet(pieEntries,"data");
-   //     pieDataSet.setColor(ColorTemplate.COLORFUL_COLORS);
+        pieDataSet.setColors(colors);
         pieDataSet.setValueTextColor(Color.BLACK);
-        pieDataSet.setValueTextSize(12f);
+        pieDataSet.setValueTextSize(18f);
 
         PieData pieData = new PieData(pieDataSet);
         pieChart.setData(pieData);
         pieChart.getDescription().setEnabled(false);
-        pieChart.invalidate();
+        pieChart.setCenterText("Data");
+        pieChart.setCenterTextSize(18f);
         pieChart.animate();
     }
 }
