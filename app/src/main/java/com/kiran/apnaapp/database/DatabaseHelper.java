@@ -42,9 +42,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert("userDetails",null, values);
         sqLiteDatabase.close();
     }
-    public boolean isUserExist(String email) {
+    public boolean isUserExist(String email, String password) {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM userDetails WHERE email = ?", new String[]{email});
+        Cursor cursor = db.rawQuery("SELECT * FROM userDetails WHERE email = ? and password = ?", new String[]{email, password});
         if (cursor.moveToFirst()) {
 
             DetailsModal detailsModal = new DetailsModal();

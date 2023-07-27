@@ -21,7 +21,7 @@ import com.kiran.apnaapp.activities.AddPlanActivity;
 import com.kiran.apnaapp.fragments.MenuFragment;
 import com.kiran.apnaapp.fragments.StartFragment;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fragmentManager;
     private BottomNavigationView bottomNavigationView;
     private Toolbar toolbar;
@@ -41,32 +41,23 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private void initView() {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        toolbar = findViewById(R.id.toolbar);
-        drawerLayout = findViewById(R.id.drawerLayout);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        bottomNavigationView.setSelectedItemId(R.id.entries);
+
+        /*drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
         constraintLayout = findViewById(R.id.clAdd);
-
-        setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.nav_open, R.string.nav_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
-        bottomNavigationView.setSelectedItemId(R.id.entries);
         constraintLayout.setOnClickListener(this);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);*/
 
     }
 
-    @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -76,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         } else if (id == R.id.start) {
             loadFragment(new StartFragment());
         }
-
         return true;
     }
 
@@ -84,7 +74,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         fragmentManager.beginTransaction().replace(R.id.frameLayout, fragment).commit();
     }
 
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+ /*   @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }*/
+
+ /*   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
@@ -101,5 +101,5 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             Intent intent = new Intent(MainActivity.this, AddPlanActivity.class);
             startActivity(intent);
         }
-    }
+    }*/
 }

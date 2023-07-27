@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.kiran.apnaapp.CommonUtilities;
 import com.kiran.apnaapp.MainActivity;
 import com.kiran.apnaapp.Session;
 import com.kiran.apnaapp.database.DatabaseHelper;
@@ -39,14 +40,14 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             if (isValidation()){
                 String email= binding.etEmail.getText().toString().trim();
                 String password= binding.etPassword.getText().toString().trim();
-                boolean isUserExist = databaseHelper.isUserExist(email);
+                boolean isUserExist = databaseHelper.isUserExist(email,password);
                 if (isUserExist){
                     session.setBooleanValue("Login", true);
                     Toast.makeText(this, "Sign in Successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                     startActivity(intent);
                 }else {
-                    Toast.makeText(this, "user doesn't exist, please sign up first", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "user doesn't exist, please sign up", Toast.LENGTH_SHORT).show();
                 }
             }
         } else if (view==binding.btnSignUp) {
@@ -56,6 +57,23 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private boolean isValidation() {
+        if (binding.etEmail.getText().toString().trim().isEmpty()){
+            binding.etEmail.requestFocus();
+            binding.etEmail.setError("First enter your email address");
+            return false;
+        } else if (!CommonUtilities.isValidEmail(binding.etEmail.getText().toString().trim())) {
+            binding.etEmail.requestFocus();
+            binding.etEmail.setError("First re-check your email address");
+            return false;
+        } else if (binding.etPassword.getText().toString().trim().isEmpty()) {
+            binding.etPassword.requestFocus();
+            binding.etPassword.setError("First enter your password");
+            return false;
+        } else if (!CommonUtilities.isValidPassword(binding.etPassword.getText().toString().trim())) {
+            binding.etPassword.requestFocus();
+            binding.etPassword.setError("Password must have at-least 6 digits");
+            return false;
+        }
         return true;
     }
 }
