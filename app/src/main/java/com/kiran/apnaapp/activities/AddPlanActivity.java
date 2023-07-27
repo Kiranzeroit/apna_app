@@ -2,20 +2,19 @@ package com.kiran.apnaapp.activities;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.archit.calendardaterangepicker.customviews.CalendarListener;
-import com.archit.calendardaterangepicker.customviews.DateRangeCalendarView;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.kiran.apnaapp.R;
+import com.kiran.apnaapp.CommonUtilities;
+import com.kiran.apnaapp.bottomsheet.BottomSheetDialogView;
 import com.kiran.apnaapp.databinding.ActivityAddPlanBinding;
 
 import java.util.Calendar;
 
-public class AddPlanActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddPlanActivity extends AppCompatActivity implements View.OnClickListener, CalendarListener, BottomSheetDialogView.ItemClickListener {
     private ActivityAddPlanBinding binding;
 
     @Override
@@ -43,7 +42,7 @@ public class AddPlanActivity extends AppCompatActivity implements View.OnClickLi
                 String startDate = binding.etStartDate.getText().toString().trim();
                 String endDate = binding.etEndDate.getText().toString().trim();
             }
-        } else if (view==binding.etStartDate) {
+        } else if (view == binding.etStartDate) {
             showBottomSheetDialog();
         }
     }
@@ -71,22 +70,19 @@ public class AddPlanActivity extends AppCompatActivity implements View.OnClickLi
 
     private void showBottomSheetDialog() {
 
-        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-        bottomSheetDialog.setContentView(R.layout.bottom_sheet_calander_dialog);
-        DateRangeCalendarView calendar = findViewById(R.id.calendar);
-        calendar.setCalendarListener(new CalendarListener() {
-            @Override
-            public void onFirstDateSelected(Calendar startDate) {
-                Toast.makeText(AddPlanActivity.this, "Start Date: " + startDate.getTime().toString(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onDateRangeSelected(Calendar startDate, Calendar endDate) {
-
-                Toast.makeText(AddPlanActivity.this, "Start Date: " + startDate.getTime().toString() + " End date: " + endDate.getTime().toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        bottomSheetDialog.show();
+        BottomSheetDialogView bottomSheetDialog = BottomSheetDialogView.newInstance();
+        bottomSheetDialog.show(getSupportFragmentManager(), BottomSheetDialogView.TAG);
     }
+
+    @Override
+    public void onDateRangeSelected(@NonNull Calendar startDate, @NonNull Calendar endDate) {
+        binding.etStartDate.setText(CommonUtilities.changeDateFormat(startDate.getTime().toString()));
+        binding.etEndDate.setText(CommonUtilities.changeDateFormat(endDate.getTime().toString()));
+    }
+
+    @Override
+    public void onFirstDateSelected(@NonNull Calendar startDate) {
+    }
+
 
 }
