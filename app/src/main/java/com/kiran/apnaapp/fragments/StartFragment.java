@@ -14,13 +14,19 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.kiran.apnaapp.R;
+import com.kiran.apnaapp.database.DatabaseHelper;
+import com.kiran.apnaapp.modals.TripModal;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StartFragment extends Fragment {
     private PieChart pieChart;
+    private List<TripModal> tripDataList = new ArrayList<>();
+    private DatabaseHelper databaseHelper;
+    private ArrayList<PieEntry> pieEntries = new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,23 +36,25 @@ public class StartFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        databaseHelper = new DatabaseHelper(requireActivity());
         initView(view);
     }
 
     private void initView(View view) {
         pieChart = view.findViewById(R.id.pieChart);
+        tripDataList = databaseHelper.getUsersTripList();
         showPieChart();
     }
 
-    private void showPieChart(){
+    private void showPieChart() {
 
-        ArrayList<PieEntry> pieEntries = new ArrayList<>();
-        pieEntries.add(new PieEntry(50,"2010"));
-        pieEntries.add(new PieEntry(50,"2012"));
-        pieEntries.add(new PieEntry(50,"2017"));
-        pieEntries.add(new PieEntry(50,"2019"));
-        pieEntries.add(new PieEntry(50,"2020"));
-        pieEntries.add(new PieEntry(50,"2023"));
+
+        pieEntries.add(new PieEntry(50, "2010"));
+        pieEntries.add(new PieEntry(50, "2012"));
+        pieEntries.add(new PieEntry(50, "2017"));
+        pieEntries.add(new PieEntry(50, "2019"));
+        pieEntries.add(new PieEntry(50, "2020"));
+        pieEntries.add(new PieEntry(50, "2023"));
 
         ArrayList<Integer> colors = new ArrayList<>();
         colors.add(Color.parseColor("#304567"));
@@ -57,7 +65,7 @@ public class StartFragment extends Fragment {
         colors.add(Color.parseColor("#ff5f67"));
         colors.add(Color.parseColor("#3ca567"));
 
-        PieDataSet pieDataSet= new PieDataSet(pieEntries,"data");
+        PieDataSet pieDataSet = new PieDataSet(pieEntries, "data");
         pieDataSet.setColors(colors);
         pieDataSet.setValueTextColor(Color.BLACK);
         pieDataSet.setValueTextSize(18f);
