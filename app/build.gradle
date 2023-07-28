@@ -46,4 +46,6 @@ dependencies {
     implementation 'io.github.architshah248.calendar:awesome-calendar:2.0.0'
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    implementation 'com.google.code.gson:gson:2.10.1'
+
 }

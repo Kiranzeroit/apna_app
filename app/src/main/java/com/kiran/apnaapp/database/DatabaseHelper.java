@@ -18,8 +18,9 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "apna_app_database.db";
     private static final int DATABASE_VERSION = 1;
+
     public DatabaseHelper(@Nullable Context context) {
-        super(context,DATABASE_NAME,null,DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
@@ -37,7 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void saveUserDetails(String name, String mobile, String city, String email, String password, String confirmPassword){
+    public void saveUserDetails(String name, String mobile, String city, String email, String password, String confirmPassword) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("name", name);
@@ -45,9 +46,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("city", city);
         values.put("email", email);
         values.put("password", password);
-        sqLiteDatabase.insert("userDetails",null, values);
+        sqLiteDatabase.insert("userDetails", null, values);
         sqLiteDatabase.close();
     }
+
     @SuppressLint("Range")
     public boolean isUserExist(String email, String password) {
         SQLiteDatabase db = getReadableDatabase();
@@ -68,43 +70,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public DetailsModal getUserDetails(){
+    public DetailsModal getUserDetails() {
         DetailsModal detailsModal = new DetailsModal();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
 
-        Cursor cursor= sqLiteDatabase.rawQuery("SELECT * FROM userDetails", null);
-        if (cursor.moveToFirst()){
-            detailsModal.name= cursor.getString(cursor.getColumnIndex("name"));
-            detailsModal.mobile= cursor.getString(cursor.getColumnIndex("mobile"));
-            detailsModal.city= cursor.getString(cursor.getColumnIndex("city"));
-            detailsModal.email= cursor.getString(cursor.getColumnIndex("email"));
-            detailsModal.password= cursor.getString(cursor.getColumnIndex("password"));
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userDetails", null);
+        if (cursor.moveToFirst()) {
+            detailsModal.name = cursor.getString(cursor.getColumnIndex("name"));
+            detailsModal.mobile = cursor.getString(cursor.getColumnIndex("mobile"));
+            detailsModal.city = cursor.getString(cursor.getColumnIndex("city"));
+            detailsModal.email = cursor.getString(cursor.getColumnIndex("email"));
+            detailsModal.password = cursor.getString(cursor.getColumnIndex("password"));
         }
         return detailsModal;
     }
 
-    public void saveTripDetails(String name, String budget, String startDate, String endDate){
+    public void saveTripDetails(String name, String budget, String startDate, String endDate) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("name", name);
         values.put("budget", budget);
         values.put("startDate", startDate);
         values.put("endDate", endDate);
-        sqLiteDatabase.insert("planDetails",null, values);
+        sqLiteDatabase.insert("planDetails", null, values);
         sqLiteDatabase.close();
     }
 
     @SuppressLint("Range")
-    public TripModal getTripDetails(){
-        TripModal tripModal= new TripModal();
+    public TripModal getTripDetails() {
+        TripModal tripModal = new TripModal();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
 
-        Cursor cursor= sqLiteDatabase.rawQuery("SELECT * FROM planDetails", null);
-        if (cursor.moveToFirst()){
-            tripModal.name= cursor.getString(cursor.getColumnIndex("name"));
-            tripModal.budget= cursor.getString(cursor.getColumnIndex("budget"));
-            tripModal.startDate= cursor.getString(cursor.getColumnIndex("startDate"));
-            tripModal.endDate= cursor.getString(cursor.getColumnIndex("endDate"));
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM planDetails", null);
+        if (cursor.moveToFirst()) {
+            tripModal.name = cursor.getString(cursor.getColumnIndex("name"));
+            tripModal.budget = cursor.getString(cursor.getColumnIndex("budget"));
+            tripModal.startDate = cursor.getString(cursor.getColumnIndex("startDate"));
+            tripModal.endDate = cursor.getString(cursor.getColumnIndex("endDate"));
         }
         return tripModal;
     }
@@ -131,11 +133,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return item_data;
     }
 
-    public void deleteUser(String name) {
+    public void deletePlanDetails(String name) {
         SQLiteDatabase db = getWritableDatabase();
-
         db.delete("planDetails", "name = ?", new String[]{name});
-
         db.close();
     }
 }
