@@ -1,8 +1,8 @@
 package com.kiran.apnaapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -14,24 +14,27 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kiran.apnaapp.R;
-import com.kiran.apnaapp.interfaces.ClickListener;
+import com.kiran.apnaapp.interfaces.InterfaceClickCallback;
 import com.kiran.apnaapp.modals.TripModal;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.DataViewHolder> {
-    private AppCompatTextView tvName, tvBudget, tvStartDate, tvEndDate;
-    private AppCompatImageView ivMore;
-    private Context context;
-    private List<TripModal> list;
 
-    private ClickListener clickListener;
+    private final Context context;
+    private final List<TripModal> list;
 
-    public DetailsAdapter(Context context, List<TripModal> list, ClickListener clickListener) {
+    private final InterfaceClickCallback interfaceClickCallback;
+
+    public DetailsAdapter(Context context, List<TripModal> list, InterfaceClickCallback interfaceClickCallback) {
         this.context = context;
         this.list = list;
-        this.clickListener = clickListener;
+        this.interfaceClickCallback = interfaceClickCallback;
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateData() {
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -52,6 +55,9 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.DataView
     }
 
     public class DataViewHolder extends RecyclerView.ViewHolder {
+        private AppCompatTextView tvName, tvBudget, tvStartDate, tvEndDate;
+        private AppCompatImageView ivMore;
+
         public DataViewHolder(@NonNull View itemView) {
             super(itemView);
             initView(itemView);
@@ -62,8 +68,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.DataView
             tvBudget = itemView.findViewById(R.id.tvBudget);
             tvStartDate = itemView.findViewById(R.id.tvStartDate);
             tvEndDate = itemView.findViewById(R.id.tvEndDate);
-            ivMore= itemView.findViewById(R.id.ivMore);
-
+            ivMore = itemView.findViewById(R.id.ivMore);
         }
 
         private void bindView(TripModal tripModal, int position) {
@@ -74,25 +79,20 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.DataView
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    clickListener.onClick(tripModal, position,"item");
+                    interfaceClickCallback.clickCallBack(tripModal, position, "item");
                 }
             });
 
             ivMore.setOnClickListener(view -> {
-                PopupMenu popupMenu = new PopupMenu(context, ivMore);
+                PopupMenu popupMenu = new PopupMenu(context, view);
                 popupMenu.getMenuInflater().inflate(R.menu.menu_popup, popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        clickListener.onClick(tripModal, position,"delete");
-                        Toast.makeText(context,menuItem.getTitle(), Toast.LENGTH_SHORT).show();
-                        return true;
-                    }
+                popupMenu.setOnMenuItemClickListener(menuItem -> {
+                    interfaceClickCallback.clickCallBack(tripModal, position, "delete");
+                    Toast.makeText(context, menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+                    return true;
                 });
                 popupMenu.show();
-
             });
-
         }
     }
 }
