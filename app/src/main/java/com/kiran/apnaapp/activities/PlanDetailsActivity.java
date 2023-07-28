@@ -61,15 +61,20 @@ public class PlanDetailsActivity extends AppCompatActivity implements InterfaceC
     private void setAdapterView() {
         expensesModalList.clear();
         expensesModalList = session.getExpensesList(tripModal.name);
-        expansesAdapter = new ExpansesAdapter(this, expensesModalList, this);
-        recyclerView.setAdapter(expansesAdapter);
+        try {
+            if (expensesModalList != null) {
+                expansesAdapter = new ExpansesAdapter(this, expensesModalList, this);
+                recyclerView.setAdapter(expansesAdapter);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public void clickCallBack(Object object, int position, String from) {
-        Intent intent = new Intent(this, ExpenseActivity.class);
-        intent.putExtra("tripDetails", tripDetails);
-        someActivityResultLauncher.launch(intent);
+
     }
 
     private final ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
@@ -77,7 +82,7 @@ public class PlanDetailsActivity extends AppCompatActivity implements InterfaceC
             result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent data = result.getData();
-                    if (data != null && data.hasExtra("tripDetails")) {
+                    if (data != null && data.hasExtra("tripModal")) {
                         tripDetails = data.getStringExtra("tripModal");
                         tripModal = new Gson().fromJson(tripDetails, TripModal.class);
                         setAdapterView();
@@ -88,7 +93,9 @@ public class PlanDetailsActivity extends AppCompatActivity implements InterfaceC
     @Override
     public void onClick(View view) {
         if (view == floatingActionButton) {
-
+            Intent intent = new Intent(this, ExpenseActivity.class);
+            intent.putExtra("tripModal", tripDetails);
+            someActivityResultLauncher.launch(intent);
         }
     }
 }
