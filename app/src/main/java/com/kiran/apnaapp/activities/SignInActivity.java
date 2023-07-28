@@ -43,6 +43,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 boolean isUserExist = databaseHelper.isUserExist(email,password);
                 if (isUserExist){
                     session.setBooleanValue("Login", true);
+                    session.setStringValue("email", email);
                     Toast.makeText(this, "Sign in Successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                     startActivity(intent);

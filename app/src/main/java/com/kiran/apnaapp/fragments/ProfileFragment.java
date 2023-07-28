@@ -11,6 +11,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 
 import com.kiran.apnaapp.R;
+import com.kiran.apnaapp.Session;
 import com.kiran.apnaapp.database.DatabaseHelper;
 import com.kiran.apnaapp.modals.DetailsModal;
 
@@ -18,6 +19,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private AppCompatTextView tvName, tvCity, tvMobile, tvEmail, tvLogout;
     private DatabaseHelper databaseHelper;
     private DetailsModal detailsModal;
+    private Session session;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         databaseHelper = new DatabaseHelper(requireActivity());
         detailsModal= new DetailsModal();
+        session= new Session(requireActivity());
         initView(view);
     }
 
@@ -40,7 +43,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         tvLogout = view.findViewById(R.id.tvLogout);
         tvLogout.setOnClickListener(this);
 
-        //detailsModal= databaseHelper.getUserDetails();
+
+        detailsModal= databaseHelper.getUserDetails(session.getStringValue("email"));
 
         tvName.setText(detailsModal.name);
         tvCity.setText(detailsModal.city);
@@ -50,6 +54,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        if (view==tvLogout){
+
+        }
 
     }
 }

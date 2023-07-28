@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.kiran.apnaapp.CommonUtilities;
-import com.kiran.apnaapp.MainActivity;
 import com.kiran.apnaapp.database.DatabaseHelper;
 import com.kiran.apnaapp.databinding.ActivitySignUpBinding;
 
@@ -41,6 +40,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 String email = binding.etEmail.getText().toString().trim();
                 String password = binding.etPassword.getText().toString().trim();
                 String confirmPassword = binding.etConfirmPassword.getText().toString().trim();
+
 
                 boolean isUserExist = databaseHelper.isUserExist(email, password);
 
