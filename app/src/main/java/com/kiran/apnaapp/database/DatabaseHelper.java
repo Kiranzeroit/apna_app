@@ -70,17 +70,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public DetailsModal getUserDetails() {
+    public DetailsModal getUserDetails(String email) {
         DetailsModal detailsModal = new DetailsModal();
-        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM userDetails WHERE email = ?", new String[]{email});
 
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userDetails", null);
+
         if (cursor.moveToFirst()) {
             detailsModal.name = cursor.getString(cursor.getColumnIndex("name"));
-            detailsModal.mobile = cursor.getString(cursor.getColumnIndex("mobile"));
             detailsModal.city = cursor.getString(cursor.getColumnIndex("city"));
+            detailsModal.mobile = cursor.getString(cursor.getColumnIndex("mobile"));
             detailsModal.email = cursor.getString(cursor.getColumnIndex("email"));
-            detailsModal.password = cursor.getString(cursor.getColumnIndex("password"));
         }
         return detailsModal;
     }
