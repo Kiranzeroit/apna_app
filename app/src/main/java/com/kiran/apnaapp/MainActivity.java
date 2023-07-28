@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kiran.apnaapp.fragments.MenuFragment;
+import com.kiran.apnaapp.fragments.ProfileFragment;
 import com.kiran.apnaapp.fragments.StartFragment;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             loadFragment(new MenuFragment());
         } else if (id == R.id.start) {
             loadFragment(new StartFragment());
+        } else if (id== R.id.profile) {
+            loadFragment(new ProfileFragment());
         }
         return true;
     }
