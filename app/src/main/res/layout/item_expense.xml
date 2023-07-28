@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="@dimen/_2sdp"
+    android:padding="@dimen/_5sdp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvExpenseName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="@dimen/_14sdp"
+        tools:text="shopping"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:inputType="textCapSentences"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvExpenseName"
+        android:textSize="@dimen/_14sdp"
+        tools:text="₹200.00"
+        android:layout_marginEnd="@dimen/_10sdp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

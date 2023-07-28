@@ -28,7 +28,7 @@ public class StartFragment extends Fragment {
     private DatabaseHelper databaseHelper;
     private ArrayList<PieEntry> pieEntries = new ArrayList<>();
     private TripModal tripModal = new TripModal();
-    private PieDataSet pieDataSetOne;
+    private PieDataSet pieDataSet;
 
     @Nullable
     @Override
@@ -55,15 +55,12 @@ public class StartFragment extends Fragment {
         for (int i = 0; i < tripDataList.size(); i++) {
             pieEntries.add(new PieEntry(Float.parseFloat(tripDataList.get(i).budget),tripDataList.get(i).name));
         }
+        pieDataSet = new PieDataSet(pieEntries,"Budget");
+        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        pieDataSet.setValueTextColor(Color.BLACK);
+        pieDataSet.setValueTextSize(18f);
 
-
-
-        pieDataSetOne = new PieDataSet(pieEntries,"Budget");
-        pieDataSetOne.setColors(ColorTemplate.COLORFUL_COLORS);
-        pieDataSetOne.setValueTextColor(Color.BLACK);
-        pieDataSetOne.setValueTextSize(18f);
-
-        PieData pieData = new PieData(pieDataSetOne);
+        PieData pieData = new PieData(pieDataSet);
         pieChart.setData(pieData);
         pieChart.getDescription().setEnabled(false);
         pieChart.setCenterText("Data");
