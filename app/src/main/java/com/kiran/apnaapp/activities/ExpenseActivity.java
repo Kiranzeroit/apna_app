@@ -84,7 +84,7 @@ public class ExpenseActivity extends AppCompatActivity implements View.OnClickLi
         spinnerSpentType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                paymentType = setSpentList().get(position);
+                spentType = setSpentList().get(position);
             }
 
             @Override
@@ -108,9 +108,17 @@ public class ExpenseActivity extends AppCompatActivity implements View.OnClickLi
                 expensesModal.place = place;
                 expensesModal.spentType = spentType;
                 expensesModalList.clear();
-                expensesModalList = session.getExpensesList(tripModal.name);
+
+                try {
+                    if (session.getExpensesList(tripModal.name) != null) {
+                        expensesModalList = session.getExpensesList(tripModal.name);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 expensesModalList.add(expensesModal);
-                String expensesList = new Gson().toJson(expensesModal);
+                String expensesList = new Gson().toJson(expensesModalList);
                 session.setExpenses(tripModal.name, expensesList);
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("isSave", true);
@@ -156,8 +164,8 @@ public class ExpenseActivity extends AppCompatActivity implements View.OnClickLi
         } else if (spentType.isEmpty()) {
             Toast.makeText(this, "please select spent type", Toast.LENGTH_SHORT).show();
             return false;
-        } else
-            return true;
+        }
+        return true;
     }
 
     public void openDatePicker() {

@@ -67,7 +67,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             binding.etMobile.requestFocus();
             binding.etMobile.setError("First enter your mobile number with country code");
             return false;
-        } else if (binding.etMobile.getText().toString().trim().length()!= 10) {
+        } else if (binding.etMobile.getText().toString().trim().length()!= 12) {
             binding.etMobile.requestFocus();
             binding.etMobile.setError("Re-check your mobile number");
             return false;

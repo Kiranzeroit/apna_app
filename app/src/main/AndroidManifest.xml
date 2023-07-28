@@ -33,6 +33,8 @@
 
         <activity android:name=".activities.PlanDetailsActivity" />
 
+        <activity android:name=".activities.ExpenseActivity" />
+
     </application>
 
 </manifest>
