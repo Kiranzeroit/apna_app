@@ -8,7 +8,7 @@
         android:id="@+id/tvSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_70sdp"
         android:text="Sign In"
         android:textColor="@color/purple"
         android:textSize="@dimen/_20sdp"
@@ -22,11 +22,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_30sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:hint="@string/hint_email"
         android:textColor="@color/black"
         android:inputType="textEmailAddress"
+        android:textSize="@dimen/_12sdp"
+        android:background="@drawable/bg_edit_text"
+        android:padding="@dimen/_10sdp"
         app:layout_constraintTop_toBottomOf="@id/tvSignIn" />
 
     <androidx.appcompat.widget.AppCompatEditText
@@ -36,10 +39,13 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:hint="@string/hint_password"
         android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp"
         app:layout_constraintEnd_toEndOf="@id/etEmail"
         app:layout_constraintStart_toStartOf="@id/etEmail"
         app:layout_constraintTop_toBottomOf="@id/etEmail"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:background="@drawable/bg_edit_text"
+        android:padding="@dimen/_10sdp"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignIn"
@@ -48,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@id/etPassword"
         android:layout_marginStart="@dimen/_30sdp"
         android:layout_marginEnd="@dimen/_30sdp"
-        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_50sdp"
         android:background="@drawable/btn_bg_round_corners"
         android:textColor="@color/white"
         android:textSize="@dimen/_14sdp"

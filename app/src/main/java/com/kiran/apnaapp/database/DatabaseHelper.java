@@ -6,7 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteTransactionListener;
 
 import androidx.annotation.Nullable;
 
@@ -26,7 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        sqLiteDatabase.execSQL("CREATE TABLE userDetails(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, mobile TEXT, city TEXT, email TEXT, password TEXT, confirmPassword TEXT)");
+        sqLiteDatabase.execSQL("CREATE TABLE userDetails(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, mobile TEXT, city TEXT, email TEXT, password TEXT)");
         sqLiteDatabase.execSQL("CREATE TABLE planDetails(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, budget TEXT, startDate TEXT, endDate TEXT)");
 
     }
@@ -46,7 +45,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("city", city);
         values.put("email", email);
         values.put("password", password);
-        values.put("confirmPassword", confirmPassword);
         sqLiteDatabase.insert("userDetails",null, values);
         sqLiteDatabase.close();
     }
@@ -55,11 +53,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM userDetails WHERE email = ? and password = ?", new String[]{email, password});
         if (cursor.moveToFirst()) {
-
             DetailsModal detailsModal = new DetailsModal();
             detailsModal.email = cursor.getString(cursor.getColumnIndex("email"));
             detailsModal.password = cursor.getString(cursor.getColumnIndex("password"));
-
         }
 
         if (cursor.getCount() == 0) {
@@ -83,7 +79,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             detailsModal.city= cursor.getString(cursor.getColumnIndex("city"));
             detailsModal.email= cursor.getString(cursor.getColumnIndex("email"));
             detailsModal.password= cursor.getString(cursor.getColumnIndex("password"));
-            detailsModal.confirmPassword= cursor.getString(cursor.getColumnIndex("confirmPassword"));
         }
         return detailsModal;
     }
@@ -95,7 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("budget", budget);
         values.put("startDate", startDate);
         values.put("endDate", endDate);
-        sqLiteDatabase.insert("planDetails","", values);
+        sqLiteDatabase.insert("planDetails",null, values);
         sqLiteDatabase.close();
     }
 
@@ -115,7 +110,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public List<TripModal> getUsersTargetList() {
+    public List<TripModal> getUsersTripList() {
 
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + "planDetails", null);
@@ -134,5 +129,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         return item_data;
+    }
+
+    public void deleteUser(String name) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        db.delete("planDetails", "name = ?", new String[]{name});
+
+        db.close();
     }
 }

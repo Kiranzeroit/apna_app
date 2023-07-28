@@ -26,14 +26,15 @@ public class AddPlanActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         binding = ActivityAddPlanBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        databaseHelper = new DatabaseHelper(this);
         initView();
+        databaseHelper = new DatabaseHelper(this);
     }
 
     private void initView() {
         binding.tvSave.setOnClickListener(this);
         binding.ivBack.setOnClickListener(this);
         binding.etStartDate.setOnClickListener(this);
+        binding.etEndDate.setOnClickListener(this);
     }
 
     @Override
@@ -53,6 +54,8 @@ public class AddPlanActivity extends AppCompatActivity implements View.OnClickLi
 
             }
         } else if (view == binding.etStartDate) {
+            showBottomSheetDialog();
+        } else if (view == binding.etEndDate) {
             showBottomSheetDialog();
         }
     }
