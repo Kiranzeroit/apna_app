@@ -1,98 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilNote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/_40sdp"
         android:layout_marginHorizontal="@dimen/_10sdp"
-        app:startIconDrawable="@drawable/ic_pencil"
-        app:startIconTint="@color/purple"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:background="@android:color/transparent"
         android:hint="Note"
-        android:background="@android:color/transparent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/ic_pencil"
+        app:startIconTint="@color/purple">
+
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/etNote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_14sdp"
             android:background="@drawable/bg_background_white_round_corners"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tilNote"
-        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginHorizontal="@dimen/_10sdp"
-        app:startIconDrawable="@drawable/ic_calendar"
-        app:startIconTint="@color/purple"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@android:color/transparent"
         android:hint="Select date"
-        android:background="@android:color/transparent">
+        app:layout_constraintTop_toBottomOf="@id/tilNote"
+        app:startIconDrawable="@drawable/ic_calendar"
+        app:startIconTint="@color/purple">
+
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/etDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_14sdp"
-            android:textColor="@color/black"
+            android:background="@drawable/bg_background_white_round_corners"
             android:clickable="false"
             android:editable="false"
-            android:background="@drawable/bg_background_white_round_corners"/>
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilAmount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tilDate"
-        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginHorizontal="@dimen/_10sdp"
-        app:startIconDrawable="@drawable/ic_amount"
-        app:startIconTint="@color/purple"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@android:color/transparent"
         android:hint="Amount"
-        android:background="@android:color/transparent">
+        app:layout_constraintTop_toBottomOf="@id/tilDate"
+        app:startIconDrawable="@drawable/ic_amount"
+        app:startIconTint="@color/purple">
+
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/etAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_14sdp"
+            android:background="@drawable/bg_background_white_round_corners"
             android:textColor="@color/black"
-            android:background="@drawable/bg_background_white_round_corners"/>
+            android:textSize="@dimen/_14sdp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/spinnerPaymentType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tilAmount"
+        android:layout_marginHorizontal="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginHorizontal="@dimen/_10sdp"/>
+        app:layout_constraintTop_toBottomOf="@id/tilAmount" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilAddPlace"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/spinnerPaymentType"
-        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginHorizontal="@dimen/_10sdp"
-        app:startIconDrawable="@drawable/ic_add_place"
-        app:startIconTint="@color/purple"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@android:color/transparent"
         android:hint="Add Place"
-        android:background="@android:color/transparent">
+        app:layout_constraintTop_toBottomOf="@id/spinnerPaymentType"
+        app:startIconDrawable="@drawable/ic_add_place"
+        app:startIconTint="@color/purple">
+
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/etAddPlace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_14sdp"
+            android:background="@drawable/bg_background_white_round_corners"
             android:textColor="@color/black"
-            android:background="@drawable/bg_background_white_round_corners"/>
+            android:textSize="@dimen/_14sdp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatSpinner
@@ -100,9 +103,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@id/tilAddPlace"
         android:layout_marginTop="@dimen/_10sdp"
-        />
+        app:layout_constraintTop_toBottomOf="@id/tilAddPlace" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -114,7 +116,7 @@
         android:scaleType="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:shapeAppearanceOverlay="@style/fab_3_rounded"/>
+        app:shapeAppearanceOverlay="@style/fab_3_rounded" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
