@@ -52,7 +52,6 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Inte
         recyclerView = view.findViewById(R.id.recyclerView);
         floatingActionButton = view.findViewById(R.id.floatingActionButton);
         floatingActionButton.setOnClickListener(this);
-
     }
 
     private void setAdapterView() {

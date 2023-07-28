@@ -133,6 +133,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return item_data;
     }
 
+    @SuppressLint("Range")
+    public List<TripModal> getExpenses() {
+
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + "planDetails", null);
+        List<TripModal> item_data = new ArrayList<>();
+        if (cursor.getCount() != 0) {
+            if (cursor.moveToFirst()) {
+                do {
+                    TripModal obj = new TripModal();
+                    obj.name = cursor.getString(cursor.getColumnIndex("name"));
+                    obj.budget = cursor.getString(cursor.getColumnIndex("budget"));
+                    obj.startDate = cursor.getString(cursor.getColumnIndex("startDate"));
+                    obj.endDate = cursor.getString(cursor.getColumnIndex("endDate"));
+                    item_data.add(obj);
+                } while (cursor.moveToNext());
+            }
+        }
+        cursor.close();
+        return item_data;
+    }
+
     public void deletePlanDetails(String name) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete("planDetails", "name = ?", new String[]{name});
