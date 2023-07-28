@@ -48,10 +48,13 @@ public class AddPlanActivity extends AppCompatActivity implements View.OnClickLi
                 String startDate = binding.etStartDate.getText().toString().trim();
                 String endDate = binding.etEndDate.getText().toString().trim();
 
-                databaseHelper.saveTripDetails(name,budget, startDate, endDate);
+                databaseHelper.saveTripDetails(name, budget, startDate, endDate);
                 Toast.makeText(this, "Save successfully", Toast.LENGTH_SHORT).show();
-                onBackPressed();
 
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("isSave", true);
+                setResult(RESULT_OK, resultIntent);
+                finish();
             }
         } else if (view == binding.etStartDate) {
             showBottomSheetDialog();

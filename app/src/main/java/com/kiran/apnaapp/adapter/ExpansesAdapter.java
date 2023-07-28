@@ -19,14 +19,14 @@ import com.kiran.apnaapp.modals.TripModal;
 
 import java.util.List;
 
-public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.DataViewHolder> {
+public class ExpansesAdapter extends RecyclerView.Adapter<ExpansesAdapter.DataViewHolder> {
 
     private final Context context;
     private final List<TripModal> list;
 
     private final InterfaceClickCallback interfaceClickCallback;
 
-    public DetailsAdapter(Context context, List<TripModal> list, InterfaceClickCallback interfaceClickCallback) {
+    public ExpansesAdapter(Context context, List<TripModal> list, InterfaceClickCallback interfaceClickCallback) {
         this.context = context;
         this.list = list;
         this.interfaceClickCallback = interfaceClickCallback;
