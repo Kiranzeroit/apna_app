@@ -6,5 +6,4 @@ public class DetailsModal {
     public String city="";
     public String email="";
     public String password= "";
-    public String confirmPassword ="";
 }

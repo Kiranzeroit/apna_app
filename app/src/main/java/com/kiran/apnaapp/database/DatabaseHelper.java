@@ -77,10 +77,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         if (cursor.moveToFirst()) {
+            detailsModal.email = cursor.getString(cursor.getColumnIndex("email"));
             detailsModal.name = cursor.getString(cursor.getColumnIndex("name"));
             detailsModal.city = cursor.getString(cursor.getColumnIndex("city"));
             detailsModal.mobile = cursor.getString(cursor.getColumnIndex("mobile"));
-            detailsModal.email = cursor.getString(cursor.getColumnIndex("email"));
+
         }
         return detailsModal;
     }

@@ -22,10 +22,10 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding= ActivitySignInBinding.inflate(getLayoutInflater());
+        binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        session = new Session(this);
         databaseHelper = new DatabaseHelper(this);
-        session= new Session(this);
         initView();
     }
 
@@ -36,28 +36,29 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        if (view==binding.btnSignIn){
-            if (isValidation()){
-                String email= binding.etEmail.getText().toString().trim();
-                String password= binding.etPassword.getText().toString().trim();
-                boolean isUserExist = databaseHelper.isUserExist(email,password);
-                if (isUserExist){
+        if (view == binding.btnSignIn) {
+            if (isValidation()) {
+                String email = binding.etEmail.getText().toString().trim();
+                String password = binding.etPassword.getText().toString().trim();
+                boolean isUserExist = databaseHelper.isUserExist(email, password);
+                if (isUserExist) {
                     session.setBooleanValue("Login", true);
+                    session.setStringValue("email", email);
                     Toast.makeText(this, "Sign in Successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                     startActivity(intent);
-                }else {
+                } else {
                     Toast.makeText(this, "user doesn't exist, please sign up", Toast.LENGTH_SHORT).show();
                 }
             }
-        } else if (view==binding.btnSignUp) {
+        } else if (view == binding.btnSignUp) {
             Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
             startActivity(intent);
         }
     }
 
     private boolean isValidation() {
-        if (binding.etEmail.getText().toString().trim().isEmpty()){
+        if (binding.etEmail.getText().toString().trim().isEmpty()) {
             binding.etEmail.requestFocus();
             binding.etEmail.setError("First enter your email address");
             return false;
