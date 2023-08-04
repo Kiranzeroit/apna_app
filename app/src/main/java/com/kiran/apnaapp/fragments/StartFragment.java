@@ -46,19 +46,20 @@ public class StartFragment extends Fragment {
     private void initView(View view) {
         pieChart = view.findViewById(R.id.pieChart);
         tripDataList = databaseHelper.getUsersTripList();
-        tripModal= databaseHelper.getTripDetails();
+        tripModal = databaseHelper.getTripDetails();
         showPieChart();
     }
 
     private void showPieChart() {
 
         for (int i = 0; i < tripDataList.size(); i++) {
-            pieEntries.add(new PieEntry(Float.parseFloat(tripDataList.get(i).budget),tripDataList.get(i).name));
+            pieEntries.add(new PieEntry(Float.parseFloat(tripDataList.get(i).budget), tripDataList.get(i).name));
         }
-        pieDataSet = new PieDataSet(pieEntries,"Budget");
-        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        pieDataSet = new PieDataSet(pieEntries, "Budget");
+        // pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         pieDataSet.setValueTextColor(Color.BLACK);
         pieDataSet.setValueTextSize(18f);
+        pieDataSet.setColors(getColorList());
 
         PieData pieData = new PieData(pieDataSet);
         pieChart.setData(pieData);
@@ -68,4 +69,20 @@ public class StartFragment extends Fragment {
         pieChart.animate();
     }
 
-   }
+    private ArrayList<Integer> getColorList() {
+        ArrayList<Integer> colors = new ArrayList<>();
+        colors.add(Color.parseColor("#FF0000"));
+        colors.add(Color.parseColor("#00FFFF"));
+        colors.add(Color.parseColor("#ADD8E6"));
+        colors.add(Color.parseColor("#FFFF00"));
+        colors.add(Color.parseColor("#00FF00"));
+        colors.add(Color.parseColor("#FF00FF"));
+        colors.add(Color.parseColor("#FFC0CB"));
+        colors.add(Color.parseColor("#800000"));
+        colors.add(Color.parseColor("#7FFFD4"));
+        colors.add(Color.parseColor("#FFA500"));
+        colors.add(Color.parseColor("#800080"));
+        return colors;
+    }
+
+}

@@ -12,6 +12,7 @@
         android:layout_marginTop="@dimen/_40sdp"
         android:background="@android:color/transparent"
         android:hint="Note"
+        android:maxLines="1"
         app:layout_constraintTop_toTopOf="parent"
         app:startIconDrawable="@drawable/ic_pencil"
         app:startIconTint="@color/purple">
@@ -22,7 +23,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_background_white_round_corners"
             android:textColor="@color/black"
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="@dimen/_14sdp"
+            android:maxLines="1"
+            android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -44,6 +47,7 @@
             android:background="@drawable/bg_background_white_round_corners"
             android:clickable="false"
             android:editable="false"
+            android:focusable="false"
             android:textColor="@color/black"
             android:textSize="@dimen/_14sdp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -66,7 +70,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_background_white_round_corners"
             android:textColor="@color/black"
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="@dimen/_14sdp"
+            android:inputType="numberDecimal"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatSpinner
@@ -95,7 +100,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_background_white_round_corners"
             android:textColor="@color/black"
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="@dimen/_14sdp"
+            android:inputType="textCapSentences"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatSpinner
@@ -117,6 +123,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:shapeAppearanceOverlay="@style/fab_3_rounded" />
+    
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

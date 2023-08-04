@@ -64,6 +64,7 @@
         android:editable="false"
         android:hint="Start date"
         android:padding="@dimen/_6sdp"
+        android:focusable="false"
         android:textColor="@color/black"
         android:textSize="@dimen/_14sdp"
         app:layout_constraintTop_toBottomOf="@id/etBudget" />
@@ -80,6 +81,7 @@
         android:padding="@dimen/_6sdp"
         android:textColor="@color/black"
         android:textSize="@dimen/_14sdp"
+        android:focusable="false"
         app:layout_constraintTop_toBottomOf="@id/etStartDate" />
 
 
