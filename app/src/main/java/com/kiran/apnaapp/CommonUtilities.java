@@ -1,8 +1,20 @@
 package com.kiran.apnaapp;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.View;
 
+import androidx.appcompat.widget.AppCompatTextView;
+
+import com.kiran.apnaapp.activities.SplashScreenActivity;
+
+import java.io.ByteArrayOutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
@@ -39,4 +51,33 @@ public class CommonUtilities {
         // Return the output date string.
         return outputDate;
     }
+
+    public static Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
+
+ /*   public static void dialogLogout(Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        View customLayout = getLayoutInflater().inflate(R.layout.dialog_logout, null);
+        builder.setView(customLayout);
+        AppCompatTextView tvYes = customLayout.findViewById(R.id.tvYes);
+        AppCompatTextView tvNo = customLayout.findViewById(R.id.tvNo);
+        AlertDialog dialog = builder.create();
+        tvYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        tvNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }*/
 }

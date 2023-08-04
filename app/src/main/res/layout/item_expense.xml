@@ -5,8 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/_2sdp"
-    android:background="#EBECF0"
-    android:padding="@dimen/_5sdp">
+    android:background="@drawable/bg_item"
+    android:backgroundTint="#EBECF0"
+    android:padding="@dimen/_5sdp"
+    >
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvExpenseName"
@@ -25,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_10sdp"
         android:textSize="@dimen/_14sdp"
+        android:textColor="#00FF00"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvExpenseName"
         tools:text="₹200.00" />

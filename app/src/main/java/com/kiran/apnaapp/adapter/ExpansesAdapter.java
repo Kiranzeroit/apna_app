@@ -61,7 +61,7 @@ public class ExpansesAdapter extends RecyclerView.Adapter<ExpansesAdapter.DataVi
         private void bindView(ExpensesModal tripModal, int position) {
 
             tvExpenseName.setText(tripModal.note);
-            tvAmount.setText("" + Float.parseFloat(tripModal.amount));
+            tvAmount.setText("₹" + Float.parseFloat(tripModal.amount));
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
