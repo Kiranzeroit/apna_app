@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private DatabaseHelper databaseHelper;
     private CircleImageView civProfile;
     private NavigationView navigationView;
+    private ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +78,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         tvLogout = findViewById(R.id.tvLogout);
         navigationView = findViewById(R.id.navigationView);
         setSupportActionBar(toolbar);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.nav_open, R.string.nav_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.nav_open, R.string.nav_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.setDrawerIndicatorEnabled(true);
+        toggle.syncState();
+
+
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.entries);
         tvLogout.setOnClickListener(this);
@@ -94,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     public void onBackPressed() {
 
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
             return;
         }
@@ -104,11 +109,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        toolbar.setTitleTextColor(Color.WHITE);
         if (id == R.id.entries) {
+            toolbar.setTitle("Record");
             loadFragment(new MenuFragment());
         } else if (id == R.id.start) {
+            toolbar.setTitle("Data Chart");
             loadFragment(new StartFragment());
         } else if (id == R.id.profile) {
+            toolbar.setTitle("Profile");
             loadFragment(new ProfileFragment());
         }
         return true;
@@ -190,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             selectImage();
         } else if (view == tvLogout) {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setTitle("Logout");
+            builder.setTitle("Confirm Logout..!!");
             builder.setMessage("Are you sure you want to logout?");
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
@@ -202,4 +211,5 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             builder.show();
         }
     }
+
 }
